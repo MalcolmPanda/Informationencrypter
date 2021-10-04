@@ -8,4 +8,4 @@ Hello! Would you like to add a new Account or view existing ones? (View, Add) pr
 >>>
 view
 >>>
-User:  b'Malcolm' | Password: b'LinkedinIsAwesome!'
+User: Hello! | Password: World

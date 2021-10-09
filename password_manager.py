@@ -49,7 +49,7 @@ def view():
 
 def add():
 	name = input("Account Name: ")
-	pattern_name = re.match("^[a-zA-Z0-9_add]*$", name)
+	pattern_name = re.match("^[a-zA-Z0-9_]*$", name)
 	error_name = "Error only letters, numbers, and the symbol _ are allowed."
 	error_len = "Error, input must be between 5 and 15 characters!"
 	error_pwd = " error only letters, numbers and the symbols !@#$ are allowed."

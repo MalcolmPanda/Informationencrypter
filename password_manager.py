@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
+import re
 import os
+import sys
 import base64
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes, kdf
@@ -51,7 +53,23 @@ def view():
 
 def add():
 	name = input("Account Name: ")
+	pattern = re.match("^[a-zA-Z0-9!@#$]*$", name)
+	error_char = "Error only letters, numbers, and the symbols !@#$ are allowed!"
+	error_len = "Error only 15 characters are allowed!"
+	if not pattern:
+		print(error_char)
+		sys.exit()
+	elif len(name) > 15:
+		print(error_len)
+		sys.exit()
 	pwd = input("password: ")
+	if not pattern:
+		print(error_char)
+		sys.exit()
+	elif len(pwd) > 15:
+		print(error_len)
+		sys.exit()
+
 	name =bytes(name, 'utf-8')
 	pwd =bytes(pwd, 'utf-8')
 	encrypted_name = f.encrypt(name)

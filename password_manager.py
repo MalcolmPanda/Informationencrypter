@@ -26,12 +26,9 @@ def load_key(): # load our key
 curr_key = load_key()
 
 
-
-
 def encrypt(message: bytes, curr_key: bytes) -> bytes: # encrypts our message
 	return Fernet(curr_key).encrypt(message)
 	
-
 
 def decrypt(token: bytes, curr_key: bytes) -> bytes: # decrypts our message!
     return Fernet(curr_key).decrypt(token)
@@ -50,23 +47,25 @@ def view():
 				print("User: ", ruser,"|", "Password:",rpassw)
 
 
-
 def add():
 	name = input("Account Name: ")
-	pattern = re.match("^[a-zA-Z0-9!@#$]*$", name)
-	error_char = "Error only letters, numbers, and the symbols !@#$ are allowed!"
-	error_len = "Error only 15 characters are allowed!"
-	if not pattern:
-		print(error_char)
+	pattern_name = re.match("^[a-zA-Z0-9_add]*$", name)
+	error_name = "Error only letters, numbers, and the symbol _ are allowed."
+	error_len = "Error, input must be between 5 and 15 characters!"
+	error_pwd = " error only letters, numbers and the symbols !@#$ are allowed."
+	if not pattern_name:
+		print(error_name)
 		sys.exit()
-	elif len(name) > 15:
+	elif len(name) < 5 or len(name) >= 15: 
 		print(error_len)
 		sys.exit()
+
 	pwd = input("password: ")
-	if not pattern:
-		print(error_char)
+	pattern_pwd = re.match("^[a-zA-Z0-9!@#$]*$", pwd)
+	if not pattern_pwd:
+		print(error_pwd)
 		sys.exit()
-	elif len(pwd) > 15:
+	elif len(pwd) < 5 or len(pwd) >= 15:
 		print(error_len)
 		sys.exit()
 
@@ -79,8 +78,6 @@ def add():
 	file.close()
 
 	
-
-
 while True:
 	mode = input("Hello! Would you like to add a new Account or view existing ones? (View, Add) press q to quit. ").lower()
 	if mode == "q":
